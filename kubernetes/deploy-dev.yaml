@@ -2,15 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fe-bp
+  name: fe-configuration
   labels:
-    app: fe-bp
-  namespace: fe-bp
+    app: fe-configuration
+  namespace: fe-configuration
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fe-bp
+      app: fe-configuration
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,13 +19,13 @@ spec:
   template:
     metadata:
       labels:
-        app: fe-bp
+        app: fe-configuration
     spec:
       imagePullSecrets:
       - name: registry
       containers:
-      - name: fe-bp
-        image: git.edenfarm.id:5050/project-version3/erp-services/module-boilerplate/dev:<VERSION>
+      - name: fe-configuration
+        image: git.edenfarm.id:5050/project-version3/erp-dashboard/configuration/dev:<VERSION>
         ports:
           - name: http-port
             containerPort: 8080
@@ -49,10 +49,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-fe-bp
-  namespace: fe-bp
+  name: svc-fe-configuration
+  namespace: fe-configuration
   labels:
-    app: fe-bp
+    app: fe-configuration
 spec:
   ports:
   - name: http
@@ -60,18 +60,18 @@ spec:
     port: 80
     targetPort: http-port
   selector:
-    app: fe-bp
+    app: fe-configuration
 ---
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: hpa-fe-bp
-  namespace: fe-bp
+  name: hpa-fe-configuration
+  namespace: fe-configuration
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: fe-bp
+    name: fe-configuration
   minReplicas: 1
   maxReplicas: 10
   metrics:
@@ -91,12 +91,12 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: fe-bp
-  namespace: fe-bp
+  name: fe-configuration
+  namespace: fe-configuration
 spec:
   dnsNames:
-    - fe-bp.edenfarm.tech
-  secretName: fe-bp-tls
+    - configuration.edenfarm.tech
+  secretName: fe-configuration-tls
   issuerRef:
     name: letsencrypt-cluster-issuer
     kind: ClusterIssuer
@@ -104,23 +104,23 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: fe-bp
+  namespace: fe-configuration
   annotations:
     kubernetes.io/ingress.class: "nginx"
-  name: fe-bp
+  name: fe-configuration
 spec:
   tls:
   - hosts:
-    - fe-bp.edenfarm.tech
-    secretName: fe-bp-tls
+    - configuration.edenfarm.tech
+    secretName: fe-configuration-tls
   rules:
-  - host: fe-bp.edenfarm.tech
+  - host: configuration.edenfarm.tech
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: svc-fe-bp
+            name: svc-fe-configuration
             port:
               number: 80
