@@ -1,12 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import home from "./modules/home";
+import application from "./modules/application";
+import regionpolicy from "./modules/regionpolicy";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    home
+    application,
+    regionpolicy
   }
 });
