@@ -9,31 +9,37 @@ import Http from "./services/http";
 import vuetify from "./plugins/vuetify";
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import Vuetify from "vuetify/lib";
+import { 
+  SelectGlossary,
+  DetailRowNew,
+  ConfirmationDialogNew
+} from "@vue-mf/global";
 
 Vue.config.productionTip = false;
 Vue.use(VueToast);
+Vue.use(Vuetify)
 
 // ini untuk privilege
-Vue.directive("privilege", {
-  inserted: function(el, binding, vnode) {
-    let priv = localStorage.getItem("priv");
-    if (store.getters.getStaff) {
-      let superAdmin = store.getters.getStaff;
-      superAdmin.user.email = store.getters.getStaff.user.email;
-      if (superAdmin.user.email !== "superadmin") {
-        if (typeof binding.value !== "undefined") {
-          priv = "," + priv + ",";
-          binding.value = "," + binding.value + ",";
+Vue.directive('privilege', {
+  inserted: function (el, binding, vnode) {
+      let priv = localStorage.getItem('priv')
+      if (typeof binding.value !== 'undefined') {
+          priv = "," + priv + ","
+          binding.value = "," + binding.value + ","
           if (priv.indexOf(binding.value) < 0) {
-            vnode.elm.parentElement.removeChild(vnode.elm);
+              vnode.elm.parentElement.removeChild(vnode.elm)
           }
-        }
       }
-    }
   }
-});
+})
 
 Vue.mixin({
+  components: {
+    SelectGlossary,
+    DetailRowNew,
+    ConfirmationDialogNew
+  },
   data: function() {
     return {
       status: [
