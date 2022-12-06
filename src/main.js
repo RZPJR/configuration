@@ -12,6 +12,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 import Vuetify from "vuetify/lib";
 import { 
   SelectGlossary,
+  DetailRowNew,
   ConfirmationDialogNew
 } from "@vue-mf/global";
 
@@ -36,6 +37,7 @@ Vue.directive('privilege', {
 Vue.mixin({
   components: {
     SelectGlossary,
+    DetailRowNew,
     ConfirmationDialogNew
   },
   data: function() {

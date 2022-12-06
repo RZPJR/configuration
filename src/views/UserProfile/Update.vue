@@ -1,8 +1,8 @@
 <template>
     <v-container fill-height class="main-container">
         <div class="box">
-            <v-row class="-mb28">
-                <v-col cols="12" md="6">
+            <v-row class="mt24">
+                <v-col cols="12" md="6" class="mt24">
                     <v-text-field
                         name="phone_number"
                         v-model="form.phone_number"
@@ -18,20 +18,20 @@
                         </template>
                     </v-text-field>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" md="6" class="mt24">
                     <v-tooltip top>
                         <template v-slot:activator="{ on }">
                             <v-text-field
-                                name="display_name"
-                                v-model="form.display_name"
+                                name="nickname"
+                                v-model="form.nickname"
                                 required
                                 outlined
                                 dense
-                                :error-messages="error.display_name"
+                                :error-messages="error.nickname"
                                 v-on="on"
                             >
                                 <template v-slot:label>
-                                    Display Name<span style="color:red">*</span>
+                                    Nickname<span style="color:red">*</span>
                                 </template>
                             </v-text-field>
                         </template>
@@ -76,19 +76,8 @@
         data () {
             return {
                 ConfirmData:{},
-                supervisor:null,
-                area:null,
                 form:{
-                    idUser:'',
-                    name: '',
-                    role: '',
-                    user_code: '',
-                    display_name: '',
-                    employee_code: '',
-                    division: '',
-                    supervisor_id: '',
-                    area_id: '',
-                    warehouse: '',
+                    nickname: '',
                     phone_number: '',
                 },
                 error:{}
@@ -100,49 +89,18 @@
                     model : true,
                     title : "Update User Profile",
                     text : "Are you sure want to update this User Profile?",
-                    urlApi : '/config/user/profile/detail',
-                    nextPage : "/configuration/usr_profile",
+                    urlApi : '/account/v1/profile',
+                    nextPage : "/configuration/user-profile",
                     data : {
-                        display_name :this.form.display_name,
+                        nickname :this.form.nickname,
                         phone_number: this.form.phone_number,
                     }
                 }
             },
-            supervisorSelected(d) {
-                this.supervisor = null;
-                this.form.supervisor_id = '';
-                if (d !== ''  && d !== undefined) {
-                    this.supervisor = d;
-                    this.form.supervisor_id = d.id
-                }
-            },
-            areaSelected(d) {
-                this.area = null;
-                this.form.area_id = '';
-                this.warehouse = null;
-                this.form.warehouse_id = '';
-                this.clearWarehouse = true
-                this.disabled_warehouse = true
-                if (d !== ''  && d !== undefined) {
-                    this.area = d;
-                    this.form.area_id = d.id
-                    this.disabled_warehouse = false
-                    this.clearWarehouse = false
-                }
-            },
             renderData(){
-                this.$http.get("/config/user/profile/detail").then(response => {
-                    this.form.employee_code= response.data.data.employee_code
-                    this.form.name= response.data.data.name
-                    this.form.display_name = response.data.data.display_name
+                this.$http.get("/account/v1/profile").then(response => {
+                    this.form.nickname = response.data.data.nickname
                     this.form.phone_number = response.data.data.phone_number
-                    this.form.division= response.data.data.role.division.name
-                    this.form.idUser = response.data.data.user.id
-                    this.form.user_code = response.data.data.user.code
-                    this.form.role = response.data.data.role.name
-                    this.form.warehouse= response.data.data.warehouse.name
-                    this.supervisorSelected(response.data.data.parent)
-                    this.areaSelected(response.data.data.area)
                 });
             },
         },

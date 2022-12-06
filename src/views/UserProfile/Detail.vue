@@ -6,15 +6,15 @@
                     <img
                         width="44px"
                         height="44px"
-                        src="/img/user-profile.png"
+                        :src="profile"
                         class="img-left"
                     />
                     <div class="flex-align-start pl16">
                         <div>
-                            <span class="bold">{{ form.name }}</span> ({{ form.display_name }})
+                            <span class="bold">{{ form.name }}</span> ({{ form.nickname }})
                         </div>
                         <div class="text-secondary underline">
-                            {{ form.user.email }}
+                            {{ form.email }}
                         </div>
                     </div>
                 </v-col>
@@ -22,11 +22,11 @@
                     <v-menu offset-y>
                         <template v-slot:activator="{ on }">
                             <v-btn icon v-on="on">
-                                <v-icon>mdi-dots-vertical</v-icon>
+                                <v-icon>more_vert</v-icon>
                             </v-btn>
                         </template>
                             <v-list class="bg-white">
-                                <v-list-item v-privilege="'usr_prf_upd'" :to="'/configuration/usr_profile/update' ">
+                                <v-list-item :to="'/configuration/user-profile/update' ">
                                     <v-list-item-content>
                                         <v-list-item-title>Update</v-list-item-title>
                                     </v-list-item-content>
@@ -34,7 +34,8 @@
                                         <v-icon>mdi-open-in-new</v-icon>
                                     </v-list-item-icon>
                                 </v-list-item>
-                                <v-list-item v-privilege="'usr_prf_upd_pas'" :to="'/configuration/usr_profile/password' ">
+                                <hr/>
+                                <v-list-item :to="'/configuration/user-profile/password' ">
                                     <v-list-item-content>
                                         <v-list-item-title>Update Password</v-list-item-title>
                                     </v-list-item-content>
@@ -49,21 +50,24 @@
         </div>
         <div class="box-end">
             <v-row class="mt24">
-                <v-col cols="12" md="6" class="-mt24">
-                    <DetailRowNew :name="'Division'" :value="form.role.division.name"/>
+                <v-col cols="12" md="6" class="mt24">
+                    <DetailRowNew :name="'Division'" :value="form.main_role.division.name"/>
+                </v-col>
+                <v-col cols="12" md="6" class="mt24">
+                    <DetailRowNew :name="'Role'" :value="form.main_role.name"/>
                 </v-col>
                 <v-col cols="12" md="6" class="-mt24">
-                    <DetailRowNew :name="'Role'" :value="form.role.name"/>
+                    <!-- <DetailRowNew :name="'Area'" :value="form.region.name"/> -->
+                    <DetailRowNew :name="'Region'" :value="'-'"/>
                 </v-col>
                 <v-col cols="12" md="6" class="-mt24">
-                    <DetailRowNew :name="'Area'" :value="form.area.name"/>
+                    <!-- <DetailRowNew :name="'Supervisor'" v-if="form.supevisor != null" :value="form.parent.name"/> -->
+                    <!-- <DetailRowNew :name="'Supervisor'" v-else :value="'-'"/> -->
+                    <DetailRowNew :name="'Supervisor'" :value="'-'"/>
                 </v-col>
                 <v-col cols="12" md="6" class="-mt24">
-                    <DetailRowNew :name="'Supervisor'" v-if="form.supevisor != null" :value="form.parent.name"/>
-                    <DetailRowNew :name="'Supervisor'" v-else :value="'-'"/>
-                </v-col>
-                <v-col cols="12" md="6" class="-mt24">
-                    <DetailRowNew :name="'Warehouse'" :value="form.warehouse.name"/>
+                    <!-- <DetailRowNew :name="'Warehouse'" :value="form.warehouse.name"/> -->
+                    <DetailRowNew :name="'Site'" :value="'-'"/>
                 </v-col>
                 <v-col cols="12" md="6" class="-mt24">
                     <DetailRowNew :name="'Phone Number'" :value="form.phone_number"/>
@@ -78,23 +82,26 @@
 }
 </style>
 <script>
+import { UserProfile } from "@vue-mf/global";
 export default {
+    components: { UserProfile },
     name : "UserProfileDetail",
     data() {
         return {
-            form: {}
+            form: {},
+            profile : ''
         };
     },
     methods:{
         renderData(){
-            this.$http.get("/config/user/profile/detail").then(response => {
+            this.$http.get("/account/v1/profile").then(response => {
                 this.form = response.data.data
-                this.form.supevisor = response.data.data.parent.name
             });
         },
     },
     created(){
         this.renderData()
+        this.profile = UserProfile
     }
 };
 </script>

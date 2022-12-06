@@ -1,21 +1,21 @@
 <template>
     <v-container fill-height class="main-container">
         <div class="box">
-            <v-row class="-mb38">
-                <v-col cols="12" md="6">
+            <v-row class="mt24">
+                <v-col cols="12" md="6" class="mt24">
                     <v-text-field
                         name="email"
-                        v-model="form.email"
+                        v-model="email"
                         label="Email*"
                         outlined
                         disabled
                         dense
-                        :error-messages="error.phone_number"
+                        :error-messages="error.email"
                     ></v-text-field>
                 </v-col>
             </v-row>
-            <v-row class="-mb30">
-                <v-col cols="12" md="6">
+            <v-row>
+                <v-col cols="12" md="6" class="-mt24">
                     <v-text-field
                         v-model="form.password"
                         name="password"
@@ -29,7 +29,7 @@
                         :rules="passwordRules"
                     ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" md="6" class="-mt24">
                     <v-text-field
                         v-model="form.confirm_password"
                         name="password"
@@ -84,9 +84,8 @@
                 show: false,
                 show2: false,
                 disabledSubmit:true,
+                email: '',
                 form:{
-                    id_user:'',
-                    email: '',
                     password: '',
                     confirm_password: '',
                 },
@@ -109,15 +108,14 @@
                     model : true,
                     title : "Update Password",
                     text : "Are you sure want to update this password?",
-                    urlApi : "/config/user/profile/password",
-                    nextPage : "/configuration/usr_profile",
+                    urlApi : '/account/v1/profile/reset_password',
+                    nextPage : "/configuration/user-profile",
                     data : this.form
                 }
             },
             renderData(){
-                this.$http.get("/config/user/profile/detail").then(response => {
-                    this.form.id_user = response.data.data.user.id;
-                    this.form.email = response.data.data.user.email
+                this.$http.get("/account/v1/profile").then(response => {
+                    this.email = response.data.data.email
                 });
             },
         },
