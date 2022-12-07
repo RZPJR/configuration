@@ -134,9 +134,13 @@
                     model : true,
                     title : "Update Region Policy",
                     text : "Are you sure want to update this Region Policy?",
-                    urlApi : '/region_policy/'+ this.$route.params.id,
+                    urlApi : '/configuration/v1/region_policy/'+ this.$route.params.id,
                     nextPage : "/configuration/region-policy",
-                    data : this.form
+                    data : {
+                        order_time_limit: this.form.order_time_limit,
+                        max_day_delivery_date : parseFloat(this.form.max_day_delivery_date),
+                        weekly_day_off : parseFloat(this.form.weekly_day_off)
+                    }
                 }
             }
         },

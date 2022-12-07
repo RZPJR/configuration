@@ -114,7 +114,7 @@
                     model : true,
                     title : "Update Application Config",
                     text : "Are you sure want to update this Application Config?",
-                    urlApi : '/app/'+ this.$route.params.id,
+                    urlApi : '/configuration/v1/app/'+ this.$route.params.id,
                     nextPage : "/configuration/application",
                     data : this.form
                 }
