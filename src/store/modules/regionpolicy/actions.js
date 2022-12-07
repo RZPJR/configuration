@@ -25,7 +25,7 @@ const actions = {
             if(response.data.data) {
                 let items = response.data.data
                 commit("setUpdateRegionPolicyForm",{
-                    order_time_limit: items.application,
+                    order_time_limit: items.order_time_limit,
                     max_day_delivery_date: items.max_day_delivery_date,
                     weekly_day_off: items.weekly_day_off,
                 })
