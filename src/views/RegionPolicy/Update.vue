@@ -10,6 +10,7 @@
                         outlined
                         onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46"
                         dense
+                        :error-messages="error.weekly_day_off"
                     >
                         <template v-slot:label>
                             Weekly Day Off<span style="color:red">*</span>
@@ -24,6 +25,7 @@
                         onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46"
                         outlined
                         dense
+                        :error-messages="error.max_day_delivery_date"
                     >
                         <template v-slot:label>
                             Maximum Day Delivery Date<span style="color:red">*</span>
@@ -56,6 +58,7 @@
                                             dense
                                             v-bind="attrs"
                                             v-on="on"
+                                            :error-messages="error.order_time_limit"
                                         >
                                             <template v-slot:label>
                                                 Order Time Limit<span style="color:red">*</span>
