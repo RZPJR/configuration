@@ -5,14 +5,14 @@ const actions = {
         commit("setPreloadApplicationList", true)
         commit("setApplicationList", [])
         try {
-            let glossary = state.applicationList.filter.glossary ? '' : state.applicationList.filter.glossary
+            let glossary = !state.applicationList.filter.glossary ? '' : state.applicationList.filter.glossary
             const response = await http.get('/app', {params: {
                 per_page:100,
                 application: glossary
             }});
             commit("setApplicationList", response.data.data)
-            if(response.data.data === null){
-                commit("setConfigurationList", [])
+            if(response.data.data == null){
+                commit("setApplicationList", [])
             }
             commit("setPreloadApplicationList", false)
         } catch (error) {

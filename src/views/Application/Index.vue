@@ -85,15 +85,7 @@
                 if (d !== '' && d !== undefined) {
                     this.$store.commit("setGlossaryFilterList", d.value)
                 }
-            },
-        },
-        watch: {
-            'applicationList.filter.glossary': {
-                handler: function(val) {
-                    let that = this
-                    that.fetchApplicationList()
-                },
-                deep: true
+                this.fetchApplicationList()
             },
         },
     }
