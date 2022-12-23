@@ -9,7 +9,7 @@
                         label="Application"
                         table="all"
                         attribute="application"
-                        :norequired="true"
+                        :required="false"
                     ></SelectGlossary>
                 </v-col>
             </v-row>
