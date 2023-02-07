@@ -8,7 +8,7 @@ const state = {
           sortable: false,
         },
         {
-            text:'Delivery Date',
+            text:'Maximum Day Delivery Date',
             class: 'grey--text text--darken-4',
             sortable: false
         },

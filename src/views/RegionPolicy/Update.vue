@@ -4,8 +4,26 @@
             <v-row class="mt24 -mb38">
                 <v-col cols="12" md="6" class="mt24">
                     <v-text-field
+                        name="name"
+                        data-unq="regionPolicy-input-name"
+                        v-model="form.name"
+                        required
+                        outlined
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46"
+                        dense
+                        disabled
+                        :error-messages="error.name"
+                    >
+                        <template v-slot:label>
+                            Name<span style="color:red">*</span>
+                        </template>
+                    </v-text-field>
+                </v-col>
+                <v-col cols="12" md="6" class="mt24">
+                    <v-text-field
                         name="weekly_day_off"
                         v-model="form.weekly_day_off"
+                        data-unq="regionPolicy-input-weeklyDayOff"
                         required
                         outlined
                         onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46"
@@ -17,11 +35,12 @@
                         </template>
                     </v-text-field>
                 </v-col>
-                <v-col cols="12" md="6" class="mt24">
+                <v-col cols="12" md="6" class="-mt24">
                     <v-text-field
                         name="max_day_delivery_date"
                         v-model="form.max_day_delivery_date"
                         required
+                        data-unq="regionPolicy-input-maxDayDeliveryDate"
                         onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46"
                         outlined
                         dense
@@ -52,6 +71,7 @@
                                             outlined
                                             clearable
                                             maxlength="5"
+                                            data-unq="regionPolicy-input-orderTimeLimit"
                                             onkeypress="return event.charCode >= 48 && event.charCode <= 58"
                                             @click:clear="form.order_time_limit = ''"
                                             v-model="form.order_time_limit"
@@ -91,6 +111,7 @@
                             outlined
                             color="#EBEBEB"
                             class="main-btn"
+                            data-unq="regionPolicy-button-cancel"
                         >
                             <span class="text-black80">Cancel</span>
                         </v-btn>
@@ -98,6 +119,7 @@
                             depressed
                             color="#50ABA3"
                             class="main-btn white--text"
+                            data-unq="regionPolicy-button-save"
                             @click="confirmButton()"
                         >
                             Save

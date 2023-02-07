@@ -10,9 +10,12 @@ import vuetify from "./plugins/vuetify";
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import Vuetify from "vuetify/lib";
+import '@mdi/font/css/materialdesignicons.css'
 import { 
   SelectGlossary,
   DetailRowNew,
+  SelectWrtType,
+  SelectArea,
   ConfirmationDialogNew
 } from "@vue-mf/global";
 
@@ -38,6 +41,8 @@ Vue.mixin({
   components: {
     SelectGlossary,
     DetailRowNew,
+    SelectWrtType,
+    SelectArea,
     ConfirmationDialogNew
   },
   data: function() {
