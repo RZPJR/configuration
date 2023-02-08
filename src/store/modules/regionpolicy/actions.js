@@ -28,7 +28,7 @@ const actions = {
                     order_time_limit: items.order_time_limit,
                     max_day_delivery_date: items.max_day_delivery_date,
                     weekly_day_off: items.weekly_day_off,
-                    name : items.region.name
+                    name : items.region.description
                 })
             }
         } catch (error) {
