@@ -9,7 +9,7 @@
             >
                 <template v-slot:item="props">
                     <tr style="height:48px">
-                        <td :data-unq="`regionPolicy-label-name-${props.index}`">{{ props.item.region.name }}</td>
+                        <td :data-unq="`regionPolicy-label-name-${props.index}`">{{ props.item.region.description }}</td>
                         <td :data-unq="`regionPolicy-label-maxDayDeliveryDate-${props.index}`">{{ props.item.max_day_delivery_date }}</td>
                         <td :data-unq="`regionPolicy-label-weeklyDayOff-${props.index}`">{{ props.item.weekly_day_off }}</td>
                         <td :data-unq="`regionPolicy-label-orderTimeLimit-${props.index}`">{{ props.item.order_time_limit }}</td>
