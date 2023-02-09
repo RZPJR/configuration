@@ -58,6 +58,15 @@
             </v-row>
             <v-row v-if="filterDropdown">
                 <v-col cols="12" md="3" class="-mb24">
+                    <SelectWrtType
+                        :default="''"
+                        :dense="true"
+                        :all="true"
+                        data-unq="wrt-input-wrtType"
+                        @selected="wrtTypeSelected"
+                    ></SelectWrtType>
+                </v-col>
+                <v-col cols="12" md="3" class="-mb24">
                     <SelectArea
                         :norequired="true"
                         name="area"
@@ -149,6 +158,13 @@
                 }
                 this.fetchWrtList()
             },
+            wrtTypeSelected(val) { // Select Wrt Type
+                this.$store.commit("setWrtTypeList", "")
+                if (val) {
+                    this.$store.commit("setWrtTypeList", val.value)
+                }
+                this.fetchWrtList()
+            }
         },
         watch: {
             'search': { // to filter by search box

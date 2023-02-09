@@ -8,6 +8,10 @@ const mutations = {
         state.wrtList.region = payload;
         return state;
     },
+    setWrtTypeList: function(state, payload) {
+        state.wrtList.type = payload;
+        return state;
+    },
     setSearchWrtList: function(state, payload) {
         state.wrtList.search = payload;
         return state;
