@@ -138,6 +138,8 @@
             }
         },
         created() {
+            this.$store.commit("setWrtTypeList", "")
+            this.$store.commit("setRegionWrtList", "")
             this.fetchWrtList()
         },
         computed:{
