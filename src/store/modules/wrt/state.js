@@ -4,6 +4,7 @@ const state = {
         search : "",
         data: [],
         region : "",
+        type : "",
         table_headers: [
             {
                 text:'Code',

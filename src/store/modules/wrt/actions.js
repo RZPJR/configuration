@@ -7,12 +7,14 @@ const actions = {
         try {
             let search = state.wrtList.search
             let region = state.wrtList.region
+            let type = state.wrtList.type
             if (region == 1) {
                 region = ""
             }
             const response = await http.get('/wrt', {params: {
                 per_page:100,
                 search: search,
+                type: type,
                 region_id: region
             }});
             commit("setWrtList", response.data.data)
