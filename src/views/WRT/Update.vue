@@ -83,6 +83,7 @@
                             class="main-btn white--text"
                             @click="confirmButton()"
                             data-unq="wrt-button-save"
+                            v-privilege="'wrt_upd'"
                         >
                             Save
                         </v-btn>
