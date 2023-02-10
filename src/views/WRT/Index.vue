@@ -110,7 +110,11 @@
                                     ><v-icon dark>more_vert</v-icon></v-btn>
                                 </template>
                                 <v-list class="bg-white">
-                                    <v-list-item :data-unq="`wrt-button-update-${props.index}`" :to="`/configuration/wrt/update/${props.item.id}`">
+                                    <v-list-item 
+                                        :data-unq="`wrt-button-update-${props.index}`" 
+                                        :to="`/configuration/wrt/update/${props.item.id}`"
+                                        v-privilege="'wrt_upd'" 
+                                    >
                                         <v-list-item-content>
                                             <v-list-item-title>Update</v-list-item-title>
                                         </v-list-item-content>

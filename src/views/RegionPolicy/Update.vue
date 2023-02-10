@@ -121,6 +121,7 @@
                             class="main-btn white--text"
                             data-unq="regionPolicy-button-save"
                             @click="confirmButton()"
+                            v-privilege="'rgp_upd'"
                         >
                             Save
                         </v-btn>
@@ -132,7 +133,7 @@
     </v-container>
 </template>
 <script>
-    import { mapState, mapActions, mapMutations } from "vuex";
+    import { mapState, mapActions } from "vuex";
     export default {
         name: "ConfigurationRegionPolicyUpdate",
         data () {

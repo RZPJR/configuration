@@ -22,7 +22,11 @@
                                     ><v-icon dark>more_vert</v-icon></v-btn>
                                 </template>
                                 <v-list class="bg-white">
-                                    <v-list-item :data-unq="`regionPolicy-button-update-${props.index}`" :to="`/configuration/region-policy/update/${props.item.id}`">
+                                    <v-list-item 
+                                        :data-unq="`regionPolicy-button-update-${props.index}`" 
+                                        :to="`/configuration/region-policy/update/${props.item.id}`" 
+                                        v-privilege="'rgp_upd'"
+                                    >
                                         <v-list-item-content>
                                             <v-list-item-title>Update</v-list-item-title>
                                         </v-list-item-content>
