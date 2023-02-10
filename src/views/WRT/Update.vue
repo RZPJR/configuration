@@ -27,12 +27,38 @@
                     ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6" class="-mt24">
+                    <v-text-field
+                        name="region"
+                        v-model="form.region"
+                        data-unq="wrt-input-region"
+                        label="Region"
+                        required
+                        disabled
+                        outlined
+                        dense
+                    ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6" class="-mt24">
                     <SelectWrtType
-                        :default="form.type"
+                        :wrtType="form.type"
                         :dense="true"
                         data-unq="wrt-input-wrtType"
                         @selected="wrtTypeSelected"
                     ></SelectWrtType>
+                </v-col>
+                <v-col cols="12" md="12" class="-mt24">
+                    <v-textarea
+                        name="note"
+                        v-model="form.note"
+                        data-unq="wrt-input-note"
+                        label="Note"
+                        required
+                        rows="3"
+                        outlined
+                        dense
+                        :counter="100"
+                        maxlength="100"
+                    ></v-textarea>
                 </v-col>
             </v-row>
         </div>
@@ -96,7 +122,7 @@
                     text : "Are you sure want to update this WRT?",
                     urlApi : '/configuration/v1/wrt/'+ this.$route.params.id,
                     nextPage : "/configuration/wrt",
-                    data : { type : this.form.type}
+                    data : { type : this.form.type, note : this.form.note}
                 }
             },
             wrtTypeSelected(val) { // Select Wrt Type
