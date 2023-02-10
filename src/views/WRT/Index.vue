@@ -59,7 +59,7 @@
             <v-row v-if="filterDropdown">
                 <v-col cols="12" md="3" class="-mb24">
                     <SelectWrtType
-                        :default="''"
+                        :wrtType="''"
                         :dense="true"
                         :all="true"
                         data-unq="wrt-input-wrtType"
@@ -90,7 +90,7 @@
                 <template v-slot:item="props">
                     <tr style="height:48px">
                         <td :data-unq="`wrt-label-name-${props.index}`">{{ props.item.code }}<br>
-                        <span class="text-black60">{{ props.item.start_time }}</span></td>
+                        <span class="text-black60">{{ props.item.name }}</span></td>
                         <td :data-unq="`wrt-label-regionName-${props.index}`">{{ props.item.region.description }}</td>
                         <td :data-unq="`wrt-label-note-${props.index}`">{{ props.item.note }}</td>
                         <td :data-unq="`wrt-label-wrtType-${props.index}`">

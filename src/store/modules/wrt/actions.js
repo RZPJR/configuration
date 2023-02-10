@@ -36,7 +36,9 @@ const actions = {
                 commit("setUpdateWrtForm",{
                     type: items.type,
                     code: items.code,
-                    name: items.start_time,
+                    name: items.name,
+                    region: items.region.description,
+                    note: items.note,
                 })
             }
         } catch (error) {
