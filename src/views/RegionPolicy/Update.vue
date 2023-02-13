@@ -4,7 +4,7 @@
             <v-row class="mt24 -mb38">
                 <v-col cols="12" md="6" class="mt24">
                     <v-text-field
-                        name="name"
+                        name="region"
                         data-unq="regionPolicy-input-name"
                         v-model="form.name"
                         required
@@ -15,7 +15,7 @@
                         :error-messages="error.name"
                     >
                         <template v-slot:label>
-                            Name<span style="color:red">*</span>
+                            Region<span style="color:red">*</span>
                         </template>
                     </v-text-field>
                 </v-col>
