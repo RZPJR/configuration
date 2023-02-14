@@ -11,13 +11,7 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import Vuetify from "vuetify/lib";
 import '@mdi/font/css/materialdesignicons.css'
-import { 
-  SelectGlossary,
-  DetailRowNew,
-  SelectWrtType,
-  SelectArea,
-  ConfirmationDialogNew
-} from "@vue-mf/global";
+import { Components } from "@vue-mf/global";
 
 Vue.config.productionTip = false;
 Vue.use(VueToast);
@@ -38,13 +32,7 @@ Vue.directive('privilege', {
 })
 
 Vue.mixin({
-  components: {
-    SelectGlossary,
-    DetailRowNew,
-    SelectWrtType,
-    SelectArea,
-    ConfirmationDialogNew
-  },
+  components: Components,
   data: function() {
     return {
       status: [
