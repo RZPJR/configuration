@@ -8,7 +8,7 @@ RUN npm install --force
 RUN npm i @vue/cli@5.0.5 --force
 RUN npm run build -- --mode development
 
-FROM nginx:1.23
+FROM nginx:1.23 AS deploy
 
 COPY nginx/apps.conf /etc/nginx/conf.d/apps.conf
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
