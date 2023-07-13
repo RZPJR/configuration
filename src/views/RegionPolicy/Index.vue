@@ -13,6 +13,7 @@
                         <td :data-unq="`regionPolicy-label-maxDayDeliveryDate-${props.index}`">{{ props.item.max_day_delivery_date }}</td>
                         <td :data-unq="`regionPolicy-label-weeklyDayOff-${props.index}`">{{ props.item.weekly_day_off }}</td>
                         <td :data-unq="`regionPolicy-label-orderTimeLimit-${props.index}`">{{ props.item.order_time_limit }}</td>
+                        <td :data-unq="`regionPolicy-label-orderTimeLimit-${props.index}`">{{ props.item.default_price_level.description }}</td>
                         <td :data-unq="`regionPolicy-button-actionButton-${props.index}`">
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on: menu }">
