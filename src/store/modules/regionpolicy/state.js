@@ -23,6 +23,11 @@ const state = {
             sortable: false
         },
         {
+            text:'Default Price Set',
+            class: 'grey--text text--darken-4',
+            sortable: false
+        },
+        {
             width: "5%",
             sortable: false
         },
@@ -36,6 +41,7 @@ const state = {
         max_day_delivery_date: 0,
         weekly_day_off: 0,
         order_time_limit: '',
+        default_price_level: '',
     },
   }
 };
