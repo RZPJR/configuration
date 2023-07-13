@@ -57,8 +57,7 @@
                     <DetailRowNew :name="'Role'" :value="form.main_role.name"/>
                 </v-col>
                 <v-col cols="12" md="6" class="-mt24">
-                    <!-- <DetailRowNew :name="'Area'" :value="form.region.name"/> -->
-                    <DetailRowNew :name="'Region'" :value="'-'"/>
+                    <DetailRowNew :name="'Region'" :value="form.region.description ? form.region.description : '-'"/>
                 </v-col>
                 <v-col cols="12" md="6" class="-mt24">
                     <!-- <DetailRowNew :name="'Supervisor'" v-if="form.supevisor != null" :value="form.parent.name"/> -->
@@ -66,8 +65,7 @@
                     <DetailRowNew :name="'Supervisor'" :value="'-'"/>
                 </v-col>
                 <v-col cols="12" md="6" class="-mt24">
-                    <!-- <DetailRowNew :name="'Warehouse'" :value="form.warehouse.name"/> -->
-                    <DetailRowNew :name="'Site'" :value="'-'"/>
+                    <DetailRowNew :name="'Site'" :value="form.site.description ? form.site.description : '-'"/>
                 </v-col>
                 <v-col cols="12" md="6" class="-mt24">
                     <DetailRowNew :name="'Phone Number'" :value="form.phone_number"/>
