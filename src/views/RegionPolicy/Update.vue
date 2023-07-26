@@ -98,6 +98,17 @@
                         <span>Daily cut off time for sales order</span>
                     </v-tooltip>
                 </v-col>
+                <v-col cols="12" md="6" class="-mt24">
+                    <SelectPriceLevel
+                        @selected="priceLevelSelected($event)"
+                        name="price_level_id"
+                        :dense="true"
+                        :error="error.default_price_level"
+                        label="Price Level"
+                        :price_level="updateRegionPolicy.form.default_price_level"
+                        :data-unq="`regionPolicy-select-default_price_level`"
+                    ></SelectPriceLevel>
+                </v-col>
             </v-row>
         </div>
         <div class="box-end">
@@ -163,10 +174,19 @@
                     urlApi : '/configuration/v1/region_policy/'+ this.$route.params.id,
                     nextPage : "/configuration/region-policy",
                     data : {
+                        default_price_level: this.form.price_level_id,
                         order_time_limit: this.form.order_time_limit,
                         max_day_delivery_date : parseFloat(this.form.max_day_delivery_date),
                         weekly_day_off : parseFloat(this.form.weekly_day_off)
                     }
+                }
+            },
+            priceLevelSelected(val) { // Select Price Level
+                this.form.price_level_id = ""
+                this.form.default_price_level = ""
+                if (val) {
+                    this.form.default_price_level = val
+                    this.form.price_level_id = val.id
                 }
             }
         },
