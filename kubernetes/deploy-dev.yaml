@@ -133,8 +133,8 @@ metadata:
   namespace: fe-configuration
 spec:
   dnsNames:
-  - dev-fe-configuration.edenfarm.tech
-  secretName: dev-fe-configuration-tls
+  - fe-configuration.edenfarm.tech
+  secretName: fe-configuration-tls
   issuerRef:
     name: letsencrypt-cluster-issuer
     kind: ClusterIssuer
@@ -150,10 +150,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - dev-fe-configuration.edenfarm.tech
-    secretName: dev-fe-configuration-tls
+    - fe-configuration.edenfarm.tech
+    secretName: fe-configuration-tls
   rules:
-  - host: dev-fe-configuration.edenfarm.tech
+  - host: fe-configuration.edenfarm.tech
     http:
       paths:
       - path: /
