@@ -40,7 +40,7 @@ spec:
       - name: registry
       containers:
       - name: fe-configuration
-        image: git.edenfarm.id:5050/project-version3/erp-dashboard/configuration/eks-dev:<VERSION>
+        image: git.edenfarm.id:5050/project-version3/erp-dashboard/configuration/dev:<VERSION>
         ports:
         - name: http-port
           containerPort: 8080
@@ -133,8 +133,8 @@ metadata:
   namespace: fe-configuration
 spec:
   dnsNames:
-  - fe-configuration.edenfarm.tech
-  secretName: fe-configuration-tls
+  - dev-fe-configuration.edenfarm.tech
+  secretName: dev-fe-configuration-tls
   issuerRef:
     name: letsencrypt-cluster-issuer
     kind: ClusterIssuer
@@ -144,15 +144,16 @@ kind: Ingress
 metadata:
   namespace: fe-configuration
   annotations:
-    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
   name: fe-configuration
 spec:
+  ingressClassName: nginx
   tls:
   - hosts:
-    - fe-configuration.edenfarm.tech
-    secretName: fe-configuration-tls
+    - dev-fe-configuration.edenfarm.tech
+    secretName: dev-fe-configuration-tls
   rules:
-  - host: fe-configuration.edenfarm.tech
+  - host: dev-fe-configuration.edenfarm.tech
     http:
       paths:
       - path: /
